@@ -1,0 +1,83 @@
+﻿@model wafa.Models.Case
+<style>
+    a {
+        text-decoration: none;
+        color: orange;
+    }
+
+        a:hover {
+            color: orange;
+        }
+
+    input {
+        border-radius: 25px;
+        padding: 10px;
+        margin: 5px;
+        background-color: #FF5F1F;
+        width: 170px;
+        border: 1px solid white;
+        color: white;
+    }
+
+        input a {
+            color: white;
+        }
+</style>
+<div>
+    <h4>Case</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.case_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.case_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.issuance_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.issuance_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin.user_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin.user_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.user_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.user_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Court.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Court.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lawyer.licence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lawyer.licence)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.case_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

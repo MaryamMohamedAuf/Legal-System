@@ -1,0 +1,59 @@
+﻿@model wafa.Models.Court
+<style>
+    a {
+        text-decoration: none;
+        color: orange;
+    }
+
+        a:hover {
+            color: orange;
+        }
+
+    input {
+        border-radius: 25px;
+        padding: 10px;
+        margin: 5px;
+        background-color: #FF5F1F;
+        width: 170px;
+        border: 1px solid white;
+        color: white;
+    }
+
+        input a {
+            color: white;
+        }
+</style>
+<div>
+    <h4>Court</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.judge_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.judge_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.court_id }) |
+    @*@Html.ActionLink("Back to List", "Index")*@
+</p>

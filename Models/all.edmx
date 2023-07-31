@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="allModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="case_id" />
+          </Key>
+          <Property Name="case_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="case_no" Type="int" />
+          <Property Name="issuance_date" Type="datetime" />
+          <Property Name="court_id" Type="int" />
+          <Property Name="admin_id" Type="int" />
+          <Property Name="client_id" Type="int" />
+          <Property Name="lawyer_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Courts">
+          <Key>
+            <PropertyRef Name="court_id" />
+          </Key>
+          <Property Name="court_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="location" Type="varchar" MaxLength="255" />
+          <Property Name="judge_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Lawyers">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="licence" Type="varchar" MaxLength="255" />
+          <Property Name="office_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sessions">
+          <Key>
+            <PropertyRef Name="session_id" />
+          </Key>
+          <Property Name="session_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="session_data" Type="date" />
+          <Property Name="session_number" Type="int" />
+          <Property Name="case_id" Type="int" />
+          <Property Name="court_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="phone" Type="varchar" MaxLength="255" />
+          <Property Name="address" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <Association Name="FK__Admins__user_id__38996AB5">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Admins">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cases__client_id__4316F928">
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="admin_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cases__client_id__440B1D61">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cases__court_id__44FF419A">
+          <End Role="Courts" Type="Self.Courts" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courts">
+              <PropertyRef Name="court_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="court_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Clients__user_id__3B75D760">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lawyers__user_id__3E52440B">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Lawyers" Type="Self.Lawyers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lawyers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sessions__case_i__4BAC3F29">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1" />
+          <End Role="sessions" Type="Self.sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="case_id" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="case_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sessions__court___4CA06362">
+          <End Role="Courts" Type="Self.Courts" Multiplicity="0..1" />
+          <End Role="sessions" Type="Self.sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courts">
+              <PropertyRef Name="court_id" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="court_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="lawyer_id">
+          <End Role="Lawyers" Type="Self.Lawyers" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lawyers">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="lawyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="allModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courts" EntityType="Self.Courts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lawyers" EntityType="Self.Lawyers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sessions" EntityType="Self.sessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Admins__user_id__38996AB5" Association="Self.FK__Admins__user_id__38996AB5">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Admins" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cases__client_id__4316F928" Association="Self.FK__Cases__client_id__4316F928">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cases__client_id__440B1D61" Association="Self.FK__Cases__client_id__440B1D61">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cases__court_id__44FF419A" Association="Self.FK__Cases__court_id__44FF419A">
+            <End Role="Courts" EntitySet="Courts" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Clients__user_id__3B75D760" Association="Self.FK__Clients__user_id__3B75D760">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lawyers__user_id__3E52440B" Association="Self.FK__Lawyers__user_id__3E52440B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Lawyers" EntitySet="Lawyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sessions__case_i__4BAC3F29" Association="Self.FK__sessions__case_i__4BAC3F29">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sessions__court___4CA06362" Association="Self.FK__sessions__court___4CA06362">
+            <End Role="Courts" EntitySet="Courts" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+          <AssociationSet Name="lawyer_id" Association="Self.lawyer_id">
+            <End Role="Lawyers" EntitySet="Lawyers" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="allModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Admins__user_id__38996AB5" FromRole="Admins" ToRole="Users" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK__Cases__client_id__4316F928" FromRole="Admins" ToRole="Cases" />
+        </EntityType>
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="case_id" />
+          </Key>
+          <Property Name="case_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="case_no" Type="Int32" />
+          <Property Name="issuance_date" Type="DateTime" Precision="3" />
+          <Property Name="court_id" Type="Int32" />
+          <Property Name="admin_id" Type="Int32" />
+          <Property Name="client_id" Type="Int32" />
+          <Property Name="lawyer_id" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK__Cases__client_id__4316F928" FromRole="Cases" ToRole="Admins" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Cases__client_id__440B1D61" FromRole="Cases" ToRole="Clients" />
+          <NavigationProperty Name="Court" Relationship="Self.FK__Cases__court_id__44FF419A" FromRole="Cases" ToRole="Courts" />
+          <NavigationProperty Name="sessions" Relationship="Self.FK__sessions__case_i__4BAC3F29" FromRole="Cases" ToRole="sessions" />
+          <NavigationProperty Name="Lawyer" Relationship="Self.lawyer_id" FromRole="Cases" ToRole="Lawyers" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK__Cases__client_id__440B1D61" FromRole="Clients" ToRole="Cases" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Clients__user_id__3B75D760" FromRole="Clients" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Court">
+          <Key>
+            <PropertyRef Name="court_id" />
+          </Key>
+          <Property Name="court_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="judge_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK__Cases__court_id__44FF419A" FromRole="Courts" ToRole="Cases" />
+          <NavigationProperty Name="sessions" Relationship="Self.FK__sessions__court___4CA06362" FromRole="Courts" ToRole="sessions" />
+        </EntityType>
+        <EntityType Name="Lawyer">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="licence" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="office_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cases" Relationship="Self.lawyer_id" FromRole="Lawyers" ToRole="Cases" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Lawyers__user_id__3E52440B" FromRole="Lawyers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="session">
+          <Key>
+            <PropertyRef Name="session_id" />
+          </Key>
+          <Property Name="session_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="session_data" Type="DateTime" Precision="0" />
+          <Property Name="session_number" Type="Int32" />
+          <Property Name="case_id" Type="Int32" />
+          <Property Name="court_id" Type="Int32" />
+          <NavigationProperty Name="Case" Relationship="Self.FK__sessions__case_i__4BAC3F29" FromRole="sessions" ToRole="Cases" />
+          <NavigationProperty Name="Court" Relationship="Self.FK__sessions__court___4CA06362" FromRole="sessions" ToRole="Courts" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK__Admins__user_id__38996AB5" FromRole="Users" ToRole="Admins" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Clients__user_id__3B75D760" FromRole="Users" ToRole="Clients" />
+          <NavigationProperty Name="Lawyer" Relationship="Self.FK__Lawyers__user_id__3E52440B" FromRole="Users" ToRole="Lawyers" />
+        </EntityType>
+        <Association Name="FK__Admins__user_id__38996AB5">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Admins" Type="Self.Admin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Admins">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cases__client_id__4316F928">
+          <End Role="Admins" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="admin_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cases__client_id__440B1D61">
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cases__court_id__44FF419A">
+          <End Role="Courts" Type="Self.Court" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courts">
+              <PropertyRef Name="court_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="court_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sessions__case_i__4BAC3F29">
+          <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
+          <End Role="sessions" Type="Self.session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="case_id" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="case_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="lawyer_id">
+          <End Role="Lawyers" Type="Self.Lawyer" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lawyers">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="lawyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Clients__user_id__3B75D760">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sessions__court___4CA06362">
+          <End Role="Courts" Type="Self.Court" Multiplicity="0..1" />
+          <End Role="sessions" Type="Self.session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courts">
+              <PropertyRef Name="court_id" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="court_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lawyers__user_id__3E52440B">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Lawyers" Type="Self.Lawyer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lawyers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="allEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Cases" EntityType="Self.Case" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Courts" EntityType="Self.Court" />
+          <EntitySet Name="Lawyers" EntityType="Self.Lawyer" />
+          <EntitySet Name="sessions" EntityType="Self.session" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Admins__user_id__38996AB5" Association="Self.FK__Admins__user_id__38996AB5">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Admins" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cases__client_id__4316F928" Association="Self.FK__Cases__client_id__4316F928">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cases__client_id__440B1D61" Association="Self.FK__Cases__client_id__440B1D61">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cases__court_id__44FF419A" Association="Self.FK__Cases__court_id__44FF419A">
+            <End Role="Courts" EntitySet="Courts" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sessions__case_i__4BAC3F29" Association="Self.FK__sessions__case_i__4BAC3F29">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+          <AssociationSet Name="lawyer_id" Association="Self.lawyer_id">
+            <End Role="Lawyers" EntitySet="Lawyers" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Clients__user_id__3B75D760" Association="Self.FK__Clients__user_id__3B75D760">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sessions__court___4CA06362" Association="Self.FK__sessions__court___4CA06362">
+            <End Role="Courts" EntitySet="Courts" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lawyers__user_id__3E52440B" Association="Self.FK__Lawyers__user_id__3E52440B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Lawyers" EntitySet="Lawyers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="allModelStoreContainer" CdmEntityContainer="allEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="allModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="allModel.Case">
+              <MappingFragment StoreEntitySet="Cases">
+                <ScalarProperty Name="case_id" ColumnName="case_id" />
+                <ScalarProperty Name="case_no" ColumnName="case_no" />
+                <ScalarProperty Name="issuance_date" ColumnName="issuance_date" />
+                <ScalarProperty Name="court_id" ColumnName="court_id" />
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="lawyer_id" ColumnName="lawyer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="allModel.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courts">
+            <EntityTypeMapping TypeName="allModel.Court">
+              <MappingFragment StoreEntitySet="Courts">
+                <ScalarProperty Name="court_id" ColumnName="court_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="judge_name" ColumnName="judge_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lawyers">
+            <EntityTypeMapping TypeName="allModel.Lawyer">
+              <MappingFragment StoreEntitySet="Lawyers">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="licence" ColumnName="licence" />
+                <ScalarProperty Name="office_name" ColumnName="office_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sessions">
+            <EntityTypeMapping TypeName="allModel.session">
+              <MappingFragment StoreEntitySet="sessions">
+                <ScalarProperty Name="session_id" ColumnName="session_id" />
+                <ScalarProperty Name="session_data" ColumnName="session_data" />
+                <ScalarProperty Name="session_number" ColumnName="session_number" />
+                <ScalarProperty Name="case_id" ColumnName="case_id" />
+                <ScalarProperty Name="court_id" ColumnName="court_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="allModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

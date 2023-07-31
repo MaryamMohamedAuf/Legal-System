@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Edit";
+}
+<style>
+    a {
+        text-decoration: none;
+        color: orange;
+    }
+
+        a:hover {
+            color: orange;
+        }
+
+    input {
+        border-radius: 25px;
+        padding: 10px;
+        margin: 5px;
+        background-color: #FF5F1F;
+        width: 170px;
+        border: 1px solid white;
+        color: white;
+    }
+
+        input a {
+            color: white;
+        }
+</style>
+    <h1>Edit  </h1>
+
+    <form method="post">
+        <input type="hidden" name="id" value="@Model.id" />
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="@Model.name" />
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" value="@Model.phone" />
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" name="address" value="@Model.address" />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="@Model.email" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" />
+        </div>
+
+        <div class="form-group">
+            <label for="licence">Licence</label>
+            <input type="text" class="form-control" id="licence" name="licence" value="@Model.Lawyer.licence" />
+        </div>
+
+        <div class="form-group">
+            <label for="office name">Office name</label>
+            <input type="text" class="form-control" id="office_name" name="office_name" value="@Model.Lawyer.office_name" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="m-3" />
+        </div>
+    </form>
+
+    <a href="/users">Back to List</a>
+

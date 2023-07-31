@@ -1,0 +1,90 @@
+﻿@model IEnumerable<wafa.Models.Court>
+
+@{
+    ViewBag.title = "index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: orange;
+        }
+
+            a:hover {
+                color: orange;
+            }
+
+        button {
+            border-radius: 25px;
+            padding: 10px;
+            margin: 5px;
+            background-color: #FF5F1F;
+            width: 170px;
+            border: 1px solid white;
+            color: white;
+        }
+
+            button a {
+                color: white;
+            }
+            button a:hover{
+                color:white;
+            }
+    </style>
+   
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.court_id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.judge_name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.court_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.judge_name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.court_id }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.court_id }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.court_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <button>  @Html.ActionLink("return to all options", "AdminOptions", "user_admin") </button>
+    <button>  @Html.ActionLink("create new", "create") </button>
+
+
+</body>
+</html>

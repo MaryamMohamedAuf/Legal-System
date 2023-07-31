@@ -1,0 +1,135 @@
+﻿@model IEnumerable<wafa.Models.Case>
+<style>
+
+     tr td{
+        
+    border-bottom-style: solid;
+          border-color:black;
+    }
+   
+    button {
+        border-radius: 25px;
+        padding: 10px;
+        margin: 5px;
+        background-color: #FF5F1F;
+        width: 170px;
+        border: 1px solid white;
+    }
+
+        button:hover {
+            border: 1px solid orange;
+        }
+
+        button a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            display: inline;
+        }
+
+            button a:hover {
+                color: white;
+            }
+   
+    a {
+        text-decoration: none;
+        color: orange;
+    }
+
+        a:hover {
+            color: orange;
+        }
+</style>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.case_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.issuance_date)
+        </th>
+        <th>
+            admin_id
+            @*@Html.DisplayNameFor(model => model.Admin.user_id)*@
+        </th>
+        <th>
+            client_id
+            @*@Html.DisplayNameFor(model => model.Client.user_id)*@
+        </th>
+        <th>
+            court name
+            @*@Html.DisplayNameFor(model => model.Court.name)*@
+        </th>
+        <th>
+            lawyer licence
+            @*@Html.DisplayNameFor(model => model.Lawyer.licence)*@
+        </th>
+        <th>lawyer office name</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.case_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.issuance_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin.user_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.user_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Court.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lawyer.licence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lawyer.office_name)
+            </td>
+           
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.case_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.case_id })<br>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                  @Html.ActionLink("see  sessions", "find_related_sessions", new { id = item.case_id })<br>
+            </td>
+            <td>
+                @Html.ActionLink("see lawyer details", "GetLawyerDetails", new { id = item.case_id })<br>
+
+            </td>
+            <td>
+                @Html.ActionLink("see admin details", "GetAdminDetails", new { id = item.case_id }, null)<br>
+
+            </td>
+            <td>
+                @Html.ActionLink("see client details", "GetClientDetails", new { id = item.case_id }, null)<br>
+
+            </td>
+            <td>
+                @Html.ActionLink("see court details", "GetCourtDetails", new { id = item.case_id }, null)
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<button>
+    @Html.ActionLink("Create New", "Create")
+</button>
+<button>
+    @Html.ActionLink("Create New session", "Create", "sessions")
+</button>

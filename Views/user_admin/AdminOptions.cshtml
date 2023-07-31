@@ -1,0 +1,93 @@
+﻿@model IEnumerable<wafa.Models.User>
+@{
+    ViewBag.Title = "Admin Options";
+}
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: rgb(227, 224, 221)
+    }
+    h2 {
+        margin: 20px;
+    }
+   .options a:hover{
+        color:orange;
+    }
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .options {
+        width: 40%;
+        height: 200px;
+        margin: 10px;
+        border: 2px solid orange;
+        border-radius: 15px;
+        box-shadow: 5px 5px 10px 5px gray;
+        padding: 30px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        text-align:center;
+    }
+        .options img {
+            margin-top:15px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .options a {
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            padding: 10px;
+            margin: 10px;
+            text-decoration: none;
+            border-color: black;
+        }
+
+</style>
+<body>
+
+    <h2>Admin Options</h2>
+    <div style="display:block">
+        <div class="container">
+
+            <div class="options">
+                <img src="~/Content/managecases.png">
+                <br>
+                @Html.ActionLink("Add Other Admins", "index")
+            </div>
+
+            <div class="options">
+                <img src="~/Content/managecases2-removebg-preview.png">
+                <br>
+                @Html.ActionLink("Manage Cases", "index", "Cases")
+            </div>
+
+            <div class="options">
+                <img src="~/Content/managelawyers.png">
+                <br>
+                @Html.ActionLink("Manage Lawyers", "index", "user_lawyer")
+
+            </div>
+
+            <div class="options">
+                <img src="~/Content/download-removebg-preview.png">
+                <br>
+                @Html.ActionLink("Manage Clients", "index", "user_client")
+
+            </div>
+
+        </div>
+    </div>
+    
+    
+</body>

@@ -1,0 +1,90 @@
+/*div {
+    padding: 5px;
+  
+margin: 10px;
+  
+}
+    div label {
+        margin-right: 5px;
+    }
+    div input{
+      border-color:red;*/
+      /*float:inline-start;*/
+      /*align-items: center;
+      margin: auto;
+      text-align: center;
+      float: right;
+      margin-right: 700px;
+      border-radius:5px;
+    }
+       input .btn {
+            border-radius: 25px;
+            padding: 10px;
+            margin: 5px;
+            background-color: orangered;
+            width: 170px;
+            border: 1px solid white;
+            color: white;
+        }*/
+
+/*a {
+    text-decoration: none;
+    color: orange;
+}
+
+a:hover {
+    color: orange;
+}
+
+input {
+    border-radius: 25px;
+    padding: 10px;
+    margin: 5px;*/
+    /*background-color: #FF5F1F;*/
+    /*width: 170px;*/
+   /* border: 1px solid white;*/
+    /*color: white;
+}
+
+    input a {
+        color: white;
+    }
+        */
+
+
+div {
+    padding: 5px;
+    margin: 10px;
+}
+
+    div label {
+        margin-right: 5px;
+    }
+
+    div input {
+        border-color: red;
+        /*float: inline-start;*/
+        align-items: center;
+        margin: auto;
+        text-align: center;
+        float: right;
+        margin-right: 700px;
+        border-radius: 5px;
+    }
+
+input.btn {
+    border-radius: 25px;
+    padding: 10px;
+    margin: 5px;
+    background-color: orangered;
+    width: 170px;
+    border: 1px solid white;
+    color: white;
+}
+
+    /* Add a new CSS rule for the button with the name "Create New" */
+    input.btn[value="Submit"] {
+        background-color: white;
+        color: orangered;
+    }
+   

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<wafa.Models.session>
+
+@{
+    ViewBag.title = "index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <style>
+        a {
+            text-decoration: none;
+            color: orange;
+        }
+
+            a:hover {
+                color: orange;
+            }
+
+       
+    </style>
+
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.session_data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.session_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Case.case_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Court.name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.session_data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.session_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Case.case_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Court.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.session_id }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.session_id }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.session_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

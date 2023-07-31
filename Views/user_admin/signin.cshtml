@@ -1,0 +1,60 @@
+﻿
+
+@model wafa.Models.User
+
+@{
+    ViewBag.Title = "signin";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signin</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: orange;
+        }
+
+            a:hover {
+                color: orange;
+            }
+
+        button {
+            border-radius: 25px;
+            padding: 10px;
+            margin: 5px;
+            background-color: #FF5F1F;
+            width: 170px;
+            border: 1px solid white;
+            color: white;
+        }
+
+            button a {
+                color: white;
+            }
+            button a:hover {
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <h2>Sign in</h2>
+
+    @using (Html.BeginForm("signin", "user_admin"))
+    {
+        @*@Html.AntiForgeryToken()*@
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" class="form-control" />
+        </div>
+
+        <button type="submit" class=" m-4">Login</button>
+    }
+</body>
+</html>

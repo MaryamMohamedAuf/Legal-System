@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="casesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="case_id" />
+          </Key>
+          <Property Name="case_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="case_no" Type="int" />
+          <Property Name="issuance_date" Type="datetime" />
+          <Property Name="court_id" Type="int" />
+          <Property Name="admin_id" Type="int" />
+          <Property Name="client_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Courts">
+          <Key>
+            <PropertyRef Name="court_id" />
+          </Key>
+          <Property Name="court_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="location" Type="varchar" MaxLength="255" />
+          <Property Name="judge_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sessions">
+          <Key>
+            <PropertyRef Name="session_id" />
+          </Key>
+          <Property Name="session_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="session_data" Type="date" />
+          <Property Name="session_number" Type="int" />
+          <Property Name="case_id" Type="int" />
+          <Property Name="court_id" Type="int" />
+        </EntityType>
+        <Association Name="FK__Cases__court_id__44FF419A">
+          <End Role="Courts" Type="Self.Courts" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courts">
+              <PropertyRef Name="court_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="court_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sessions__case_i__4BAC3F29">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1" />
+          <End Role="sessions" Type="Self.sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="case_id" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="case_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sessions__court___4CA06362">
+          <End Role="Courts" Type="Self.Courts" Multiplicity="0..1" />
+          <End Role="sessions" Type="Self.sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courts">
+              <PropertyRef Name="court_id" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="court_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="casesModelStoreContainer">
+          <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courts" EntityType="Self.Courts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sessions" EntityType="Self.sessions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cases__court_id__44FF419A" Association="Self.FK__Cases__court_id__44FF419A">
+            <End Role="Courts" EntitySet="Courts" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sessions__case_i__4BAC3F29" Association="Self.FK__sessions__case_i__4BAC3F29">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sessions__court___4CA06362" Association="Self.FK__sessions__court___4CA06362">
+            <End Role="Courts" EntitySet="Courts" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="casesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="case_id" />
+          </Key>
+          <Property Name="case_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="case_no" Type="Int32" />
+          <Property Name="issuance_date" Type="DateTime" Precision="3" />
+          <Property Name="court_id" Type="Int32" />
+          <Property Name="admin_id" Type="Int32" />
+          <Property Name="client_id" Type="Int32" />
+          <NavigationProperty Name="Court" Relationship="Self.FK__Cases__court_id__44FF419A" FromRole="Cases" ToRole="Courts" />
+          <NavigationProperty Name="sessions" Relationship="Self.FK__sessions__case_i__4BAC3F29" FromRole="Cases" ToRole="sessions" />
+        </EntityType>
+        <EntityType Name="Court">
+          <Key>
+            <PropertyRef Name="court_id" />
+          </Key>
+          <Property Name="court_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="judge_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK__Cases__court_id__44FF419A" FromRole="Courts" ToRole="Cases" />
+          <NavigationProperty Name="sessions" Relationship="Self.FK__sessions__court___4CA06362" FromRole="Courts" ToRole="sessions" />
+        </EntityType>
+        <EntityType Name="session">
+          <Key>
+            <PropertyRef Name="session_id" />
+          </Key>
+          <Property Name="session_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="session_data" Type="DateTime" Precision="0" />
+          <Property Name="session_number" Type="Int32" />
+          <Property Name="case_id" Type="Int32" />
+          <Property Name="court_id" Type="Int32" />
+          <NavigationProperty Name="Case" Relationship="Self.FK__sessions__case_i__4BAC3F29" FromRole="sessions" ToRole="Cases" />
+          <NavigationProperty Name="Court" Relationship="Self.FK__sessions__court___4CA06362" FromRole="sessions" ToRole="Courts" />
+        </EntityType>
+        <Association Name="FK__Cases__court_id__44FF419A">
+          <End Role="Courts" Type="Self.Court" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courts">
+              <PropertyRef Name="court_id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="court_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sessions__case_i__4BAC3F29">
+          <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
+          <End Role="sessions" Type="Self.session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="case_id" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="case_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sessions__court___4CA06362">
+          <End Role="Courts" Type="Self.Court" Multiplicity="0..1" />
+          <End Role="sessions" Type="Self.session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courts">
+              <PropertyRef Name="court_id" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="court_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="casesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cases" EntityType="Self.Case" />
+          <EntitySet Name="Courts" EntityType="Self.Court" />
+          <EntitySet Name="sessions" EntityType="Self.session" />
+          <AssociationSet Name="FK__Cases__court_id__44FF419A" Association="Self.FK__Cases__court_id__44FF419A">
+            <End Role="Courts" EntitySet="Courts" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sessions__case_i__4BAC3F29" Association="Self.FK__sessions__case_i__4BAC3F29">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sessions__court___4CA06362" Association="Self.FK__sessions__court___4CA06362">
+            <End Role="Courts" EntitySet="Courts" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="casesModelStoreContainer" CdmEntityContainer="casesEntities">
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="casesModel.Case">
+              <MappingFragment StoreEntitySet="Cases">
+                <ScalarProperty Name="case_id" ColumnName="case_id" />
+                <ScalarProperty Name="case_no" ColumnName="case_no" />
+                <ScalarProperty Name="issuance_date" ColumnName="issuance_date" />
+                <ScalarProperty Name="court_id" ColumnName="court_id" />
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courts">
+            <EntityTypeMapping TypeName="casesModel.Court">
+              <MappingFragment StoreEntitySet="Courts">
+                <ScalarProperty Name="court_id" ColumnName="court_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="judge_name" ColumnName="judge_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sessions">
+            <EntityTypeMapping TypeName="casesModel.session">
+              <MappingFragment StoreEntitySet="sessions">
+                <ScalarProperty Name="session_id" ColumnName="session_id" />
+                <ScalarProperty Name="session_data" ColumnName="session_data" />
+                <ScalarProperty Name="session_number" ColumnName="session_number" />
+                <ScalarProperty Name="case_id" ColumnName="case_id" />
+                <ScalarProperty Name="court_id" ColumnName="court_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

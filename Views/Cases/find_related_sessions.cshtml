@@ -1,0 +1,75 @@
+﻿@model IEnumerable<wafa.Models.session>
+    <style >
+    a {
+        text-decoration: none;
+        color: orange;
+    }
+
+    a:hover {
+        color: orange;
+    }
+
+    button {
+        border-radius: 25px;
+        padding: 10px;
+        margin: 5px;
+        background-color: #FF5F1F;
+        width: 170px;
+        border: 1px solid white;
+        color: white;
+    }
+
+        button a {
+            color: white;
+        }
+        button a:hover{
+            color: white;
+        }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.session_data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.session_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Case.case_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Court.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.session_data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.session_number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Case.case_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Court.name)
+        </td>
+        <td>
+
+            @*@Html.ActionLink("Edit", "Edit", "sessions",new { id=item.session_id }) |
+            @Html.ActionLink("Details", "Details", "sessions",new { id=item.session_id }) |
+            @Html.ActionLink("Delete", "Delete", "sessions", new { id=item.session_id })*@
+
+
+        </td>
+    </tr>
+}
+
+</table>
+<button>
+    @Html.ActionLink("manage all sessions", "index", "sessions") 
+
+        </button>

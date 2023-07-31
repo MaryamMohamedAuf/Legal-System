@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    div {
+        padding: 5px;
+        margin: 10px;
+    }
+    .btn:hover {
+        color: white;
+        background-color:orangered;
+    }
+
+        div label {
+            margin-right: 5px;
+        }
+
+        div input {
+            align-items: center;
+            margin: auto;
+            text-align: center;
+            float: right;
+            margin-right: 700px;
+            border-radius: 5px;
+        }
+
+    input.btn {
+        border-radius: 25px;
+        padding: 10px;
+        margin: 5px;
+        background-color: orangered;
+        width: 170px;
+        border: 1px solid white;
+        color: white;
+        margin-right: 1100px;
+        margin-bottom: 500px;
+    }
+       
+   
+</style>
+
+<h2> create </h2>
+
+<form method="post">
+    <div>
+        <div>
+            <label for="UserName"> Name</label>
+            <input type="text" name="name" id="name" />
+        </div>
+        <div>
+            <label for="phone"> phone</label>
+            <input type="number" name="phone" id="phone" />
+        </div>
+        <div>
+            <label for="address"> address</label>
+            <input type="text" name="address" id="address" />
+        </div> 
+        <div>
+            <label for="UserName"> email</label>
+            <input type="email" name="email" id="email" />
+        </div>
+        <div>
+            <label for="password"> password</label>
+            <input type="password" name="password" id="password" />
+        </div>
+
+        <div>
+            <label for="UserName"> licence</label>
+            <input type="text" name="licence" id="licence" />
+        </div>
+        <div>
+            <label for="LicenceNumber">office_name</label>
+            <input type="text" name="office_name" id="office_name" />
+        </div>
+
+
+        <div>
+            <input class="btn" type="submit" value="create" />
+        </div>
+    </div>
+</form>
+<br><br><br>
+

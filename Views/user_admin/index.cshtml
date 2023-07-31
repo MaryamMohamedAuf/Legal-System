@@ -1,0 +1,98 @@
+﻿@model IEnumerable<wafa.Models.User>
+<style>
+    button {
+        border-radius: 25px;
+        padding: 10px;
+        margin: 5px;
+        background-color: #FF5F1F;
+        width: 170px;
+        border: 1px solid white;
+    }
+
+        button:hover {
+            border: 1px solid orange;
+        }
+
+        button a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            display: inline;
+        }
+
+            button a:hover {
+                /* font-size: 18px;*/
+                color: white;
+            }
+    /*        button a:: hover{ color:white;}
+    */
+    a {
+        text-decoration: none;
+        color: orange;
+    }
+
+        a:hover {
+            color: orange;
+        }
+</style>
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Admin.user_id)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin.user_id)
+            </td>
+            <td>
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+<button>  @Html.ActionLink("Create New", "create") </button>
+<button>  @Html.ActionLink("return to all options", "AdminOptions", "user_admin") </button>
+

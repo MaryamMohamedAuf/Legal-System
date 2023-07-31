@@ -1,0 +1,89 @@
+﻿@model wafa.Models.session
+
+@{
+    ViewBag.title = "delete";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: orange;
+        }
+
+            a:hover {
+                color: orange;
+            }
+
+        input {
+            border-radius: 25px;
+            padding: 10px;
+            margin: 5px;
+            background-color: #FF5F1F;
+            width: 170px;
+            border: 1px solid white;
+            color: white;
+        }
+
+            input a {
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>session</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.session_data)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.session_data)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.session_number)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.session_number)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Case.case_id)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Case.case_id)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Court.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Court.name)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="m-3" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

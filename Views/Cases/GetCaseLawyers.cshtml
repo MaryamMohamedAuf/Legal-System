@@ -1,0 +1,57 @@
+﻿@model IEnumerable<wafa.Models.Case>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.case_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.issuance_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Admin.user_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.user_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Court.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lawyer.licence)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.case_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.issuance_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Admin.user_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.user_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Court.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lawyer.licence)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.case_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.case_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.case_id })
+        </td>
+    </tr>
+}
+
+</table>
