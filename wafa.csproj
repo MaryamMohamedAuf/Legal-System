@@ -157,56 +157,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>all.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\all_users.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>all_users.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\all_users.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>all_users.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\all_users.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>all_users.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Case.cs">
       <DependentUpon>all.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\cases.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cases.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\cases.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cases.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\cases.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cases.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CaseViewModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CaseViewModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CaseViewModel.cs">
-      <DependentUpon>CaseViewModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CaseViewModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CaseViewModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CaseViewModel1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CaseViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs">
       <DependentUpon>all.tt</DependentUpon>
@@ -263,69 +215,18 @@
       <DependentUpon>all.edmx</DependentUpon>
       <LastGenOutput>all.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\all_users.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>all_users.edmx</DependentUpon>
-      <LastGenOutput>all_users.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\all_users.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>all_users.edmx</DependentUpon>
-      <LastGenOutput>all_users.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\cases.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>cases.edmx</DependentUpon>
-      <LastGenOutput>cases.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\cases.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>cases.edmx</DependentUpon>
-      <LastGenOutput>cases.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\CaseViewModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CaseViewModel.edmx</DependentUpon>
-      <LastGenOutput>CaseViewModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\CaseViewModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CaseViewModel.edmx</DependentUpon>
-      <LastGenOutput>CaseViewModel1.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\all_users.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>all_users.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\all_users.edmx.diagram">
-      <DependentUpon>all_users.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\cases.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>cases.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\cases.edmx.diagram">
-      <DependentUpon>cases.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\all.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>all.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\all.edmx.diagram">
       <DependentUpon>all.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\CaseViewModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CaseViewModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CaseViewModel.edmx.diagram">
-      <DependentUpon>CaseViewModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
